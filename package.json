@@ -1,59 +1,25 @@
 {
+  "name": "roast-my-wallet",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "pnpm build:ui --watch & pnpm dev:playground",
-    "dev:playground": "pnpm --filter playground dev",
-    "dev:cli": "node --import tsx src/cli/index.ts",
-    "dev:create-frog": "bun create-frog/bin.ts",
-    "dev:ui": "pnpm --filter ui build --watch",
-    "build": "pnpm clean && pnpm gen:icons && pnpm gen:protobufs && pnpm build:frog && pnpm build:ui && pnpm build:create-frog && bun .scripts/postbuild.ts",
-    "build:frog": "tsc --project ./tsconfig.build.json",
-    "build:create-frog": "rimraf create-frog/_lib && tsc -p create-frog/tsconfig.build.json",
-    "build:ui": "pnpm --filter ui build",
-    "changeset": "changeset",
-    "changeset:prepublish": "bun .scripts/postversion.ts && pnpm build",
-    "changeset:publish": "pnpm changeset:prepublish && changeset publish",
-    "changeset:version": "changeset version && pnpm install --lockfile-only && bun .scripts/postversion.ts",
-    "clean": "rimraf src/_lib src/protobufs/generated src/ui/icons/index.ts src/ui/icons/**/index.ts src/ui/icons/**/package.json src/ui/.frog src/tsconfig.build.tsbuildinfo",
-    "create-frog": "node --import tsx ./create-frog/bin.ts",
-    "docs:dev": "pnpm --filter site dev",
-    "docs:build": "pnpm --filter site build",
-    "format": "biome format --write",
-    "lint": "biome check",
-    "gen:icons": "bun .scripts/gen-icons.ts",
-    "gen:protobufs": "pnpm --filter protobufs generate",
-    "postinstall": "pnpm build && pnpm preconstruct",
-    "preconstruct": "bun .scripts/preconstruct.ts",
-    "test": "vitest",
-    "typecheck": "tsc --noEmit && pnpm run --r --parallel typecheck"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "frog": "^0.15.3",
+    "hono": "^4.5.3",
+    "next": "^14.1.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "devtools-frog": "^0.0.15"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.1",
-    "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.1",
-    "@iconify/json": "^2.2.196",
-    "@iconify/types": "^2.0.0",
-    "@iconify/utils": "^2.1.22",
-    "@types/bun": "^1.0.8",
-    "@types/fs-extra": "^11.0.4",
     "@types/node": "^20",
-    "@types/path-browserify": "latest",
-    "@types/qrcode": "^1.5.5",
-    "@vitest/coverage-v8": "^1.2.2",
-    "bun": "^1.0.28",
-    "fast-glob": "^3.3.2",
-    "fs-extra": "^11.2.0",
-    "hono": "^4.6.13",
-    "picocolors": "^1.0.0",
-    "rimraf": "^5.0.5",
-    "tsx": "^4.7.1",
-    "typescript": "^5.3.3",
-    "vitest": "^1.2.2"
-  },
-  "packageManager": "pnpm@8.15.3",
-  "pnpm": {
-    "overrides": {
-      "hono": "4.6.13",
-      "typescript": "5.3.3"
-    }
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
   }
 }
